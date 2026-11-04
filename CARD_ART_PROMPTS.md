@@ -1,0 +1,839 @@
+# 《中史無雙陀螺》卡面美術 Prompt 包（60）
+
+> 給 Marcus **自己去生成圖片**用。本檔只含文字 prompt，**不含任何生成圖**。
+> 來源卡池：`cards_60.json`｜建議檔名：`{cardId}.png`｜構圖：方圖或 3:4 直幅半身／3/4
+
+## 用法
+1. 先複製下面 **全域風格前綴**（可選；每條 `prompt_en` 已內嵌同等要求），再貼上該卡英文 prompt。
+2. Negative prompt 全系列共用。
+3. 產出後裁入卡框；背景偏深色淨底，方便抠圖。
+4. 試算表版：`CARD_ART_PROMPTS.csv`（Excel／Sheets 友善，UTF-8 BOM）。
+
+## 全域風格前綴（Copy-paste）
+
+```
+Junior Chinese-history educational game card art series. Portrait bust or 3/4 view, clear silhouette readable on small Chromebook/mobile. Soft studio lighting, slightly stylized illustration (not photoreal celebrity). Plain dark charcoal/neutral background. Period-appropriate costume. Respectful, not caricature/meme. No modern firearms. Square or 3:4 portrait.
+```
+
+## 共用 Negative Prompt
+
+```
+photorealistic celebrity face, real person likeness, meme, caricature, chibi exagerated, modern gun, firearm, rifle, pistol, machine gun, blood gore, horror, sexualized, low quality, blurry face, cropped head, watermark, text, logo, busy background clutter, anime moe excess, western medieval armor mismatch, cyberpunk
+```
+
+## Prompt 規則（寫入每卡）
+- 初中受眾中史遊戲卡；半身／3/4、剪影清晰、小螢幕可辨
+- 無現代槍械；時代服飾提示；尊重、非醜化／meme
+- 深色／中性淨底，方便套卡框
+- 系列統一：柔和棚燈、略風格化插畫（非寫實名人臉）
+- 稀有度只加輕微邊緣光，人物可讀優先
+- 一卡一 prompt；英文主 prompt；中文短註（時代／特徵）
+
+## 稀有度光感
+| 稀有 | 提示 |
+|---|---|
+| 傳說 | 淡金邊緣光、略高飽和，臉仍清晰 |
+| 史詩 | 淡紫藍邊緣光 |
+| 優秀 | 銀青細邊光 |
+| 普通 | 柔光、無重 glow |
+
+---
+
+## 戰鋒（20）
+
+### A01 · 項羽 · 傳說 · Cost 4
+
+**檔名建議：** `A01.png`
+
+**中文備註（時代／特徵）：** 秦末／西楚霸王｜秦末西楚霸王；高髻束髮、厚甲戰袍、持劍；破釜沉舟氣勢
+
+**Prompt (EN):**
+
+```
+Xiang Yu (Xiang Yu), late Qin / Western Chu Hegemon, tall powerful warrior in dark battle robes and armor plates, long hair tied high with cloth band, fierce determined expression, holding a traditional Chinese bronze sword (jian) vertically, heroic silhouette. Attack Blade (Zhanfeng) warrior energy. legendary rarity vibe: subtle rich gold rim glow and deeper color saturation, still keep face crystal clear. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A02 · 霍去病 · 史詩 · Cost 3
+
+**檔名建議：** `A02.png`
+
+**中文備註（時代／特徵）：** 西漢／名將｜西漢少年名將；輕甲紅披、弓騎意象；封狼居胥
+
+**Prompt (EN):**
+
+```
+Huo Qubing, young Western Han cavalry general, light scale armor and red cape fluttering, youthful bold face, quiver hint and composite bow silhouette (period archery, no firearms), wind-swept plains feel. Attack Blade (Zhanfeng) warrior energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A03 · 岳飛 · 史詩 · Cost 3
+
+**檔名建議：** `A03.png`
+
+**中文備註（時代／特徵）：** 南宋／抗金名將｜南宋抗金；精忠氣質、宋式甲胄、持槍／劍；肅穆忠義
+
+**Prompt (EN):**
+
+```
+Yue Fei, Southern Song general, upright posture in Song-style armor with white robe accents, back faintly suggesting loyalty motif without readable modern text, solemn loyal expression, spear or long sword. Attack Blade (Zhanfeng) warrior energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A04 · 關羽 · 史詩 · Cost 3
+
+**檔名建議：** `A04.png`
+
+**中文備註（時代／特徵）：** 三國／蜀漢名將｜三國武聖；長髯綠袍、偃月刀；義薄雲天
+
+**Prompt (EN):**
+
+```
+Guan Yu, Three Kingdoms Shu general, iconic long beard, green battle robe over armor, red face tone stylized (not photoreal celebrity), holding the Green Dragon Crescent Blade (guandao), dignified righteous gaze. Attack Blade (Zhanfeng) warrior energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A05 · 張飛 · 優秀 · Cost 2
+
+**檔名建議：** `A05.png`
+
+**中文備註（時代／特徵）：** 三國／蜀漢名將｜三國猛將；環眼黑鬚、蛇矛；當陽氣勢
+
+**Prompt (EN):**
+
+```
+Zhang Fei, Three Kingdoms Shu general, fierce round eyes, dark beard, black armor, holding a long snake spear (shemao), aggressive battle-ready pose, bold silhouette. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A06 · 白起 · 傳說 · Cost 4
+
+**檔名建議：** `A06.png`
+
+**中文備註（時代／特徵）：** 戰國／秦國名將｜戰國秦將；黑甲冷峻、殺神氣場；長平意象勿血腥誇張
+
+**Prompt (EN):**
+
+```
+Bai Qi, Warring States Qin general, cold stern face, black Qin-style armor with bronze accents, short sword or command banner staff, ruthless strategist aura, minimal ornament. Attack Blade (Zhanfeng) warrior energy. legendary rarity vibe: subtle rich gold rim glow and deeper color saturation, still keep face crystal clear. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A07 · 韓信 · 史詩 · Cost 3
+
+**檔名建議：** `A07.png`
+
+**中文備註（時代／特徵）：** 西漢／兵仙｜西漢兵仙；袍甲＋兵書卷軸；運籌帷幄
+
+**Prompt (EN):**
+
+```
+Han Xin, Western Han 'soldier immortal' strategist-general, thoughtful sharp eyes, Han robe with light armor, holding a folded bamboo strategy scroll and a sword at waist, calm genius vibe. Attack Blade (Zhanfeng) warrior energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A08 · 鄭成功 · 優秀 · Cost 2
+
+**檔名建議：** `A08.png`
+
+**中文備註（時代／特徵）：** 明末清初／延平王｜明末延平王；明甲披風、望海；收復臺灣意象（無槍炮特寫）
+
+**Prompt (EN):**
+
+```
+Zheng Chenggong (Koxinga), Ming loyalist admiral-prince, Ming-style armor with cape, determined gaze toward sea horizon, traditional Chinese saber (dao), no European firearms. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A09 · 成吉思汗 · 傳說 · Cost 4
+
+**檔名建議：** `A09.png`
+
+**中文備註（時代／特徵）：** 蒙古／大汗｜蒙古大汗；毛皮披風＋札甲、弓刀；草原氣勢（尊重歷史人物）
+
+**Prompt (EN):**
+
+```
+Genghis Khan, Mongol Great Khan, fur-lined cloak over lamellar armor, commanding presence, composite bow and traditional Mongol saber hints, steppe wind, strong silhouette. Attack Blade (Zhanfeng) warrior energy. legendary rarity vibe: subtle rich gold rim glow and deeper color saturation, still keep face crystal clear. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A10 · 周瑜 · 優秀 · Cost 2
+
+**檔名建議：** `A10.png`
+
+**中文備註（時代／特徵）：** 三國／東吳都督｜三國東吳；紅甲儒將、羽扇／令旗；赤壁火光僅作邊緣光
+
+**Prompt (EN):**
+
+```
+Zhou Yu, Three Kingdoms Wu admiral, handsome refined general in red Wu-style armor and silk sash, fan or command baton, confident smile, fire-battle implied by warm rim light only. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A11 · 李廣 · 優秀 · Cost 2
+
+**檔名建議：** `A11.png`
+
+**中文備註（時代／特徵）：** 西漢／名將｜西漢飛將軍；老將持弓、簡甲；抗匈
+
+**Prompt (EN):**
+
+```
+Li Guang, Western Han 'Flying General', weathered veteran face, simple armor, powerful composite bow drawn or at rest, humble but heroic stance. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A12 · 班超 · 優秀 · Cost 2
+
+**檔名建議：** `A12.png`
+
+**中文備註（時代／特徵）：** 東漢／西域都護｜東漢投筆從戎；儒袍＋短劍、西域風沙微光
+
+**Prompt (EN):**
+
+```
+Ban Chao, Eastern Han protector of the Western Regions, scholar-turned-soldier, dual look of brush and sword—Han robe with travel cloak, short sword, desert caravan soft bg glow. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A13 · 薛仁貴 · 優秀 · Cost 2
+
+**檔名建議：** `A13.png`
+
+**中文備註（時代／特徵）：** 唐／名將｜唐初名將；亮甲白纓、持矛；征遼東意象
+
+**Prompt (EN):**
+
+```
+Xue Rengui, early Tang general, bright Tang armor with white plume helmet, spear raised, heroic young-middle aged warrior, clean strong lines. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A14 · 楊業 · 優秀 · Cost 2
+
+**檔名建議：** `A14.png`
+
+**中文備註（時代／特徵）：** 北宋／名將｜北宋楊家將；宋甲老將、長槍；邊關冷色
+
+**Prompt (EN):**
+
+```
+Yang Ye, Northern Song general of Yang family lore, Song armor, loyal aged warrior face, long spear, snowy frontier mood with cool light. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A15 · 韓世忠 · 優秀 · Cost 2
+
+**檔名建議：** `A15.png`
+
+**中文備註（時代／特徵）：** 南宋／名將｜南宋抗金；壯實甲胄、佩刀；黃天蕩水氣
+
+**Prompt (EN):**
+
+```
+Han Shizhong, Southern Song general, sturdy build, Song naval-combat armor accents, determined face, traditional saber, river-battle mist soft light. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A16 · 李自成 · 史詩 · Cost 3
+
+**檔名建議：** `A16.png`
+
+**中文備註（時代／特徵）：** 明末／闖王｜明末闖王；頭巾簡甲、佩刀；農民軍領袖（勿醜化）
+
+**Prompt (EN):**
+
+```
+Li Zicheng, late Ming rebel leader 'Chuang Wang', simple rebel armor and headwrap, fierce peasant-hero face, traditional Chinese saber, austere earth tones. Attack Blade (Zhanfeng) warrior energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A17 · 鄧世昌 · 普通 · Cost 1
+
+**檔名建議：** `A17.png`
+
+**中文備註（時代／特徵）：** 清／北洋將領｜清北洋管帶；清末官服／軍禮服（勿現代槍械）、致遠艦意象；肅穆殉國
+
+**Prompt (EN):**
+
+```
+Deng Shichang, Qing Beiyang navy captain, late-Qing formal military dress with traditional Chinese elements (no modern automatic weapons), resolute patriotic face, ship deck rope and railing soft bg, dignified martyr aura. Attack Blade (Zhanfeng) warrior energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A18 · 左宗棠 · 優秀 · Cost 2
+
+**檔名建議：** `A18.png`
+
+**中文備註（時代／特徵）：** 清／大臣名將｜清大臣；官服朝珠、西北地圖卷軸；收復新疆
+
+**Prompt (EN):**
+
+```
+Zuo Zongtang, Qing statesman-general, Qing official robe with court beads, aged wise face, map scroll of northwest, firm reforming general vibe. Attack Blade (Zhanfeng) warrior energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A19 · 祖逖 · 普通 · Cost 1
+
+**檔名建議：** `A19.png`
+
+**中文備註（時代／特徵）：** 東晉／名將｜東晉；聞雞起舞、袍甲佩劍；北伐志向
+
+**Prompt (EN):**
+
+```
+Zu Ti, Eastern Jin general, scholar-warrior rising at dawn motif, Jin robe with light armor, sword at side, rooster crow dawn light subtly, determined youth-to-middle age face. Attack Blade (Zhanfeng) warrior energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### A20 · 袁崇煥 · 史詩 · Cost 3
+
+**檔名建議：** `A20.png`
+
+**中文備註（時代／特徵）：** 明／督師｜明督師；紅綬甲胄、城垣背景；寧遠守將
+
+**Prompt (EN):**
+
+```
+Yuan Chonghuan, Ming supervisor-general, Ming armor and red sash, stern defensive commander, city wall battlement soft bg, traditional bow or command flag. Attack Blade (Zhanfeng) warrior energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+---
+
+## 國本（20）
+
+### B01 · 廉頗 · 史詩 · Cost 3
+
+**檔名建議：** `B01.png`
+
+**中文備註（時代／特徵）：** 戰國／趙國名將｜戰國趙將；老將甲胄；負荊請罪氣質（謙而威）
+
+**Prompt (EN):**
+
+```
+Lian Po, Warring States Zhao general, elderly but strong warrior, Zhao-style armor, apologetic yet proud face (will reconcile with Lin Xiangru lore), holding a cane-sword hybrid or short staff. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B02 · 衛青 · 史詩 · Cost 3
+
+**檔名建議：** `B02.png`
+
+**中文備註（時代／特徵）：** 西漢／大將軍｜西漢大將軍；漢甲披風、沉穩統帥；七戰七捷
+
+**Prompt (EN):**
+
+```
+Wei Qing, Western Han Grand General, dignified armor with Han crown-style helmet accents, calm leadership face, cavalry general cape, balanced defensive stance. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B03 · 戚繼光 · 優秀 · Cost 2
+
+**檔名建議：** `B03.png`
+
+**中文備註（時代／特徵）：** 明／抗倭名將｜明抗倭；籐牌＋刀、戚家軍紀律感；海防
+
+**Prompt (EN):**
+
+```
+Qi Jiguang, Ming anti-wokou general, Ming armor, disciplined drill-sergeant face, rattan shield and traditional saber (Ming infantry kit, no guns emphasized), coastal fort soft bg. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B04 · 于謙 · 優秀 · Cost 2
+
+**檔名建議：** `B04.png`
+
+**中文備註（時代／特徵）：** 明／兵部尚書｜明兵部；文官袍＋甲意、守北京；剛正
+
+**Prompt (EN):**
+
+```
+Yu Qian, Ming Minister of War, civil official robe with armor undertone, resolute defending Beijing, holding a tablet or command plaque, upright moral stance. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B05 · 秦始皇 · 傳說 · Cost 4
+
+**檔名建議：** `B05.png`
+
+**中文備註（時代／特徵）：** 秦／皇帝｜秦始皇；冕冠玄袍、玉璽／佩劍；大一統威嚴（勿恐怖）
+
+**Prompt (EN):**
+
+```
+Qin Shi Huang, First Emperor of Qin, black imperial robe with dragon motif stylized for kids game (tasteful), tall crown (mian), cold authoritative gaze, jade seal or sword of state, monumental silhouette. Defense Disc (Guoben) steadfast guardian energy. legendary rarity vibe: subtle rich gold rim glow and deeper color saturation, still keep face crystal clear. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B06 · 劉備 · 優秀 · Cost 2
+
+**檔名建議：** `B06.png`
+
+**中文備註（時代／特徵）：** 三國／蜀漢昭烈帝｜蜀漢昭烈；仁德面容、龍袍輕甲；劉備經典造型
+
+**Prompt (EN):**
+
+```
+Liu Bei, Three Kingdoms Shu founder, kind benevolent face, dual-fork beard classic stylization, embroidered royal robe with light armor, gentle but resolute eyes. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B07 · 徐達 · 史詩 · Cost 3
+
+**檔名建議：** `B07.png`
+
+**中文備註（時代／特徵）：** 明／開國名將｜明開國；厚甲長槍、沉穩忠將；北伐氣象
+
+**Prompt (EN):**
+
+```
+Xu Da, Ming founding general, sturdy Ming armor, loyal quiet face, long spear, northern campaign cold light. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B08 · 李靖 · 史詩 · Cost 3
+
+**檔名建議：** `B08.png`
+
+**中文備註（時代／特徵）：** 唐／名將｜唐初；唐甲令旗、儒將風；平突厥
+
+**Prompt (EN):**
+
+```
+Li Jing, early Tang general, refined Tang armor, strategist-general hybrid look, command baton, serene confidence. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B09 · 史可法 · 優秀 · Cost 2
+
+**檔名建議：** `B09.png`
+
+**中文備註（時代／特徵）：** 明末／督師｜明末揚州；忠臣面容、城門背景；殉國肅穆
+
+**Prompt (EN):**
+
+```
+Shi Kefa, late Ming supervisor, Ming official-military dress, tragic loyal expression, Yangzhou city gate soft bg, holding a traditional sword, memorial dignity. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B10 · 蒙恬 · 優秀 · Cost 2
+
+**檔名建議：** `B10.png`
+
+**中文備註（時代／特徵）：** 秦／名將｜秦將蒙恬；黑甲、長城遠影；北防匈奴
+
+**Prompt (EN):**
+
+```
+Meng Tian, Qin general, black Qin armor, supervising Great Wall motif with distant wall silhouette, stern engineer-warrior, whip or command staff (not firearm). Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B11 · 王翦 · 史詩 · Cost 3
+
+**檔名建議：** `B11.png`
+
+**中文備註（時代／特徵）：** 戰國／秦國名將｜戰國滅楚；老將厚甲、持劍沉穩；持重
+
+**Prompt (EN):**
+
+```
+Wang Jian, Warring States Qin veteran general, aged cautious wise face, heavy Qin armor, resting on sword hilt, slow-and-steady conqueror vibe. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B12 · 周亞夫 · 優秀 · Cost 2
+
+**檔名建議：** `B12.png`
+
+**中文備註（時代／特徵）：** 西漢／太尉｜西漢太尉；細柳營帳、嚴軍容；治軍嚴
+
+**Prompt (EN):**
+
+```
+Zhou Yafu, Western Han Taiwei, strict camp discipline aura, Han armor, stern no-nonsense face, fine willow camp (xiliu) motif with tents soft bg. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B13 · 郭子儀 · 史詩 · Cost 3
+
+**檔名建議：** `B13.png`
+
+**中文備註（時代／特徵）：** 唐／名將｜唐平安史；老將儒甲、慈威並濟；功臣
+
+**Prompt (EN):**
+
+```
+Guo Ziyi, Tang general, elder statesman-warrior, Tang armor with ceremonial robe, benevolent powerful face, restoring Tang peace vibe. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B14 · 狄青 · 優秀 · Cost 2
+
+**檔名建議：** `B14.png`
+
+**中文備註（時代／特徵）：** 北宋／名將｜北宋狄青；額面刺字僅作淡紋、宋甲；勇將
+
+**Prompt (EN):**
+
+```
+Di Qing, Northern Song general, famous face tattoo lore as subtle forehead mark stylization (tasteful, not grotesque), Song armor, brave young general, mace or saber. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B15 · 文天祥 · 優秀 · Cost 2
+
+**檔名建議：** `B15.png`
+
+**中文備註（時代／特徵）：** 南宋／丞相｜南宋丞相；青衫持卷、《正氣歌》意象；忠烈
+
+**Prompt (EN):**
+
+```
+Wen Tianxiang, Southern Song chancellor, scholar-official robe, upright tragic hero face, holding a poetry scroll (Zhengqi Ge implied), bamboo and rain soft mood. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B16 · 馮子材 · 普通 · Cost 1
+
+**檔名建議：** `B16.png`
+
+**中文備註（時代／特徵）：** 清／老將｜清老將；白鬚戎服、佩刀；鎮南關
+
+**Prompt (EN):**
+
+```
+Feng Zicai, Qing veteran general, elderly white-bearded warrior, late-Qing military robe, holding traditional saber, Zhennan Pass mountain mist. Defense Disc (Guoben) steadfast guardian energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B17 · 李牧 · 史詩 · Cost 3
+
+**檔名建議：** `B17.png`
+
+**中文備註（時代／特徵）：** 戰國／趙國名將｜戰國趙邊；皮毛邊甲、草原籬影；守邊名將
+
+**Prompt (EN):**
+
+```
+Li Mu, Warring States Zhao border defender, alert watchful eyes, Zhao armor with fur trim, horse and steppe fence soft bg, patient defensive general. Defense Disc (Guoben) steadfast guardian energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B18 · 張騫 · 普通 · Cost 1
+
+**檔名建議：** `B18.png`
+
+**中文備註（時代／特徵）：** 西漢／使者｜西漢使者；旅袍駝隊、絲綢卷；通西域
+
+**Prompt (EN):**
+
+```
+Zhang Qian, Western Han envoy, travel cloak over Han robes, hopeful explorer face, camel caravan soft silhouette, silk roll in hand, Silk Road dawn. Defense Disc (Guoben) steadfast guardian energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B19 · 花木蘭 · 優秀 · Cost 2
+
+**檔名建議：** `B19.png`
+
+**中文備註（時代／特徵）：** 北朝／傳說英雄｜北朝木蘭；女英雄戎裝、持槍／劍；尊重非媚俗
+
+**Prompt (EN):**
+
+```
+Hua Mulan, Northern Dynasties legendary heroine, disguised soldier then revealed heroic woman warrior, light armor over practical tunic, determined calm face, traditional spear or sword, respectful non-sexualized portrayal for junior audience. Defense Disc (Guoben) steadfast guardian energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### B20 · 秋瑾 · 普通 · Cost 1
+
+**檔名建議：** `B20.png`
+
+**中文備註（時代／特徵）：** 清末／革命家｜清末鑑湖女俠；時代服飾＋佩劍；革命志士（勿現代化過度）
+
+**Prompt (EN):**
+
+```
+Qiu Jin, late Qing revolutionary 'Jianhu Heroine', qipao-inspired period dress with revolutionary sash, sword (traditional jian) in hand, brave intellectual woman, dignified portrait. Defense Disc (Guoben) steadfast guardian energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+---
+
+## 運命軸（20）
+
+### C01 · 諸葛亮 · 傳說 · Cost 4
+
+**檔名建議：** `C01.png`
+
+**中文備註（時代／特徵）：** 三國／蜀漢丞相｜蜀漢丞相；羽扇綸巾、鶴氅；鞠躬盡瘁
+
+**Prompt (EN):**
+
+```
+Zhuge Liang, Three Kingdoms Shu chancellor, iconic feather fan and Daoist-style crane cloak over robe, calm wise face, bagua subtle pattern on cloth, scholarly strategist silhouette. Spin Axis (Yunming) destiny strategist energy. legendary rarity vibe: subtle rich gold rim glow and deeper color saturation, still keep face crystal clear. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C02 · 孫武 · 史詩 · Cost 3
+
+**檔名建議：** `C02.png`
+
+**中文備註（時代／特徵）：** 春秋／兵家｜春秋兵家；古袍竹簡《孫子》；智者
+
+**Prompt (EN):**
+
+```
+Sun Wu (Sun Tzu), Spring and Autumn military thinker, antique Zhou-era robes, holding bamboo slips of The Art of War, serene profound eyes, minimal armor accents. Spin Axis (Yunming) destiny strategist energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C03 · 劉邦 · 優秀 · Cost 2
+
+**檔名建議：** `C03.png`
+
+**中文備註（時代／特徵）：** 漢／高祖｜漢高祖；布衣帝王氣、簡冠龍袍；以柔克剛
+
+**Prompt (EN):**
+
+```
+Liu Bang, Han Gaozu, early Han imperial robe, shrewd humble-origin face turning emperor, simple crown, approachable yet kingly. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C04 · 司馬懿 · 史詩 · Cost 3
+
+**檔名建議：** `C04.png`
+
+**中文備註（時代／特徵）：** 三國／魏國權臣｜三國司馬；深沉儒袍、折扇；韜光養晦
+
+**Prompt (EN):**
+
+```
+Sima Yi, Three Kingdoms Wei power holder, deep calculating eyes, dark scholar-official robe, hands clasped behind or holding a folding fan, patient fox-strategist vibe (tasteful). Spin Axis (Yunming) destiny strategist energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C05 · 張良 · 史詩 · Cost 3
+
+**檔名建議：** `C05.png`
+
+**中文備註（時代／特徵）：** 秦漢之際／謀士｜秦漢謀士；仙風儒袍、兵書；功成身退
+
+**Prompt (EN):**
+
+```
+Zhang Liang, Qin-Han strategist, elegant Daoist-tinged robes, gentle refined face, yellow stone / strategy scroll motif, ethereal calm. Spin Axis (Yunming) destiny strategist energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C06 · 曹操 · 史詩 · Cost 3
+
+**檔名建議：** `C06.png`
+
+**中文備註（時代／特徵）：** 三國／魏武帝｜魏武帝；短髯黑紅披風、酒盞／劍；奸雄氣概（遊戲化勿醜化過度）
+
+**Prompt (EN):**
+
+```
+Cao Cao, Three Kingdoms Wei Wu Di, short beard, sharp ambitious eyes, black and red warlord cloak over armor, holding a wine cup or sword, charismatic conqueror. Spin Axis (Yunming) destiny strategist energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C07 · 唐太宗 · 傳說 · Cost 4
+
+**檔名建議：** `C07.png`
+
+**中文備註（時代／特徵）：** 唐／皇帝｜唐太宗；黃袍龍紋、英主面容；貞觀金光
+
+**Prompt (EN):**
+
+```
+Emperor Taizong of Tang (Li Shimin), Tang imperial yellow robe with dragon motif stylized for kids, confident enlightened monarch face, bow hint (he was archer-emperor) and jade belt, Zhenguan glory soft gold light. Spin Axis (Yunming) destiny strategist energy. legendary rarity vibe: subtle rich gold rim glow and deeper color saturation, still keep face crystal clear. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C08 · 康熙 · 史詩 · Cost 3
+
+**檔名建議：** `C08.png`
+
+**中文備註（時代／特徵）：** 清／皇帝｜康熙；清帝龍袍、持書／筆；文治武功
+
+**Prompt (EN):**
+
+```
+Kangxi Emperor, Qing emperor, formal Qing imperial robe with colorful rank motifs, young-to-middle aged wise face, holding a book or brush, consolidating empire aura. Spin Axis (Yunming) destiny strategist energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C09 · 孫中山 · 優秀 · Cost 2
+
+**檔名建議：** `C09.png`
+
+**中文備註（時代／特徵）：** 近代／革命家｜孫中山；民初中山裝／禮服、無武器；辛亥革命氣質（莊重）
+
+**Prompt (EN):**
+
+```
+Sun Yat-sen, modern Chinese revolutionary, early-20th-century Chinese formal suit or Zhongshan-style coat (period-appropriate, no weapons needed), visionary calm face, Republic founding dignity, blue sky white sun motif only as soft abstract light—not party propaganda poster. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C10 · 林則徐 · 優秀 · Cost 2
+
+**檔名建議：** `C10.png`
+
+**中文備註（時代／特徵）：** 清／大臣｜清大臣；官服持笏／卷、虎門海岸；禁煙忠臣
+
+**Prompt (EN):**
+
+```
+Lin Zexu, Qing official, Qing court robe, upright righteous face, holding an opium-destruction related plaque or scroll (not graphic), Humen coast soft bg. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C11 · 管仲 · 優秀 · Cost 2
+
+**檔名建議：** `C11.png`
+
+**中文備註（時代／特徵）：** 春秋／齊相｜春秋齊相；古袍持笏；管鮑輔霸
+
+**Prompt (EN):**
+
+```
+Guan Zhong, Spring and Autumn Qi chancellor, ancient Zhou robes, statesman face, holding reform tablet, prosperous Qi court soft columns. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C12 · 商鞅 · 優秀 · Cost 2
+
+**檔名建議：** `C12.png`
+
+**中文備註（時代／特徵）：** 戰國／秦國改革家｜戰國商鞅；玄袍竹簡、立木取信；法家
+
+**Prompt (EN):**
+
+```
+Shang Yang, Warring States Qin reformer, strict legalist face, Qin dark robes, wooden stake 'li mu' trust motif soft bg, holding law bamboo slips. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C13 · 蕭何 · 優秀 · Cost 2
+
+**檔名建議：** `C13.png`
+
+**中文備註（時代／特徵）：** 西漢／丞相｜西漢丞相；文官持戶籍糧冊；鎮國家
+
+**Prompt (EN):**
+
+```
+Xiao He, Western Han chancellor, administrative official robe, calm reliable face, holding household registry scrolls and grain tally, logistics backbone vibe. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C14 · 魏徵 · 普通 · Cost 1
+
+**檔名建議：** `C14.png`
+
+**中文備註（時代／特徵）：** 唐／諫臣｜唐諫臣；朴袍持諫書；直言魏徵
+
+**Prompt (EN):**
+
+```
+Wei Zheng, Tang remonstrance official, plain Tang court robe, honest stern advisor face, holding a remonstrance memorial scroll, upright moral. Spin Axis (Yunming) destiny strategist energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C15 · 王安石 · 優秀 · Cost 2
+
+**檔名建議：** `C15.png`
+
+**中文備註（時代／特徵）：** 北宋／宰相｜北宋王安石；儒袍新政卷軸；熙寧變法
+
+**Prompt (EN):**
+
+```
+Wang Anshi, Northern Song reformer-premier, Song scholar-official robe, determined reformer face, holding New Policies scroll, ink and brush accents. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C16 · 朱熹 · 普通 · Cost 1
+
+**檔名建議：** `C16.png`
+
+**中文備註（時代／特徵）：** 南宋／理學家｜南宋朱熹；儒巾青衫、書卷竹影；理學
+
+**Prompt (EN):**
+
+```
+Zhu Xi, Southern Song Neo-Confucian scholar, plain Confucian robe and headcloth, serene teacher face, books and bamboo, academy quiet light. Spin Axis (Yunming) destiny strategist energy. common rarity vibe: simple soft lighting, no heavy glow, very clear silhouette. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C17 · 王陽明 · 優秀 · Cost 2
+
+**檔名建議：** `C17.png`
+
+**中文備註（時代／特徵）：** 明／理學家｜明王陽明；儒袍行囊、心學卷；知行合一
+
+**Prompt (EN):**
+
+```
+Wang Yangming, Ming philosopher-general, Ming scholar robe with light travel cloak, insightful calm face, holding a mind-philosophy scroll, 'zhi xing he yi' wise aura. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C18 · 曾國藩 · 優秀 · Cost 2
+
+**檔名建議：** `C18.png`
+
+**中文備註（時代／特徵）：** 清／大臣｜清曾國藩；官服持筆、湘軍儒將；晚清名臣
+
+**Prompt (EN):**
+
+```
+Zeng Guofan, late Qing statesman, Qing official robe, solemn disciplined face, holding brush and military-civil dual scroll, Xiang Army leader dignity. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C19 · 武則天 · 史詩 · Cost 3
+
+**檔名建議：** `C19.png`
+
+**中文備註（時代／特徵）：** 唐／皇帝｜武則天；鳳袍華冠、女帝威儀；莊重非媚俗
+
+**Prompt (EN):**
+
+```
+Wu Zetian, Tang female emperor, magnificent Tang imperial phoenix robe and ornate crown, confident sovereign gaze, female emperor dignity, respectful powerful portrayal for junior audience (not sexualized). Spin Axis (Yunming) destiny strategist energy. epic rarity vibe: soft purple-blue rim light accent, elegant but face remains primary focus. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+### C20 · 孫臏 · 優秀 · Cost 2
+
+**檔名建議：** `C20.png`
+
+**中文備註（時代／特徵）：** 戰國／兵家｜戰國孫臏；儒袍竹簡兵法、尊嚴站／坐姿；桂陵馬陵智者
+
+**Prompt (EN):**
+
+```
+Sun Bin, Warring States strategist, scholarly robes with slight disability-aware dignified seated or standing cane support (tasteful, not mocking), bamboo military treatise, clever resilient eyes. Spin Axis (Yunming) destiny strategist energy. rare rarity vibe: gentle silver-cyan edge highlight, clean readable portrait. junior Chinese history educational game card illustration, consistent series look, portrait bust or three-quarter view, clear silhouette readable at small mobile size, slightly stylized hand-painted digital illustration (not photoreal, not celebrity likeness), soft studio lighting, plain dark neutral charcoal background for easy crop onto card frame, period-appropriate Chinese costume, respectful portrayal, no caricature, no meme, no modern firearms or guns, no gore, square or 3:4 portrait composition, centered subject.
+```
+
+---
+
+## 清單速覽
+
+| ID | 名 | 槽 | 稀有 | Cost | 檔名 |
+|---|---|---|---|---|---|
+| A01 | 項羽 | 戰鋒 | 傳說 | 4 | `A01.png` |
+| A02 | 霍去病 | 戰鋒 | 史詩 | 3 | `A02.png` |
+| A03 | 岳飛 | 戰鋒 | 史詩 | 3 | `A03.png` |
+| A04 | 關羽 | 戰鋒 | 史詩 | 3 | `A04.png` |
+| A05 | 張飛 | 戰鋒 | 優秀 | 2 | `A05.png` |
+| A06 | 白起 | 戰鋒 | 傳說 | 4 | `A06.png` |
+| A07 | 韓信 | 戰鋒 | 史詩 | 3 | `A07.png` |
+| A08 | 鄭成功 | 戰鋒 | 優秀 | 2 | `A08.png` |
+| A09 | 成吉思汗 | 戰鋒 | 傳說 | 4 | `A09.png` |
+| A10 | 周瑜 | 戰鋒 | 優秀 | 2 | `A10.png` |
+| A11 | 李廣 | 戰鋒 | 優秀 | 2 | `A11.png` |
+| A12 | 班超 | 戰鋒 | 優秀 | 2 | `A12.png` |
+| A13 | 薛仁貴 | 戰鋒 | 優秀 | 2 | `A13.png` |
+| A14 | 楊業 | 戰鋒 | 優秀 | 2 | `A14.png` |
+| A15 | 韓世忠 | 戰鋒 | 優秀 | 2 | `A15.png` |
+| A16 | 李自成 | 戰鋒 | 史詩 | 3 | `A16.png` |
+| A17 | 鄧世昌 | 戰鋒 | 普通 | 1 | `A17.png` |
+| A18 | 左宗棠 | 戰鋒 | 優秀 | 2 | `A18.png` |
+| A19 | 祖逖 | 戰鋒 | 普通 | 1 | `A19.png` |
+| A20 | 袁崇煥 | 戰鋒 | 史詩 | 3 | `A20.png` |
+| B01 | 廉頗 | 國本 | 史詩 | 3 | `B01.png` |
+| B02 | 衛青 | 國本 | 史詩 | 3 | `B02.png` |
+| B03 | 戚繼光 | 國本 | 優秀 | 2 | `B03.png` |
+| B04 | 于謙 | 國本 | 優秀 | 2 | `B04.png` |
+| B05 | 秦始皇 | 國本 | 傳說 | 4 | `B05.png` |
+| B06 | 劉備 | 國本 | 優秀 | 2 | `B06.png` |
+| B07 | 徐達 | 國本 | 史詩 | 3 | `B07.png` |
+| B08 | 李靖 | 國本 | 史詩 | 3 | `B08.png` |
+| B09 | 史可法 | 國本 | 優秀 | 2 | `B09.png` |
+| B10 | 蒙恬 | 國本 | 優秀 | 2 | `B10.png` |
+| B11 | 王翦 | 國本 | 史詩 | 3 | `B11.png` |
+| B12 | 周亞夫 | 國本 | 優秀 | 2 | `B12.png` |
+| B13 | 郭子儀 | 國本 | 史詩 | 3 | `B13.png` |
+| B14 | 狄青 | 國本 | 優秀 | 2 | `B14.png` |
+| B15 | 文天祥 | 國本 | 優秀 | 2 | `B15.png` |
+| B16 | 馮子材 | 國本 | 普通 | 1 | `B16.png` |
+| B17 | 李牧 | 國本 | 史詩 | 3 | `B17.png` |
+| B18 | 張騫 | 國本 | 普通 | 1 | `B18.png` |
+| B19 | 花木蘭 | 國本 | 優秀 | 2 | `B19.png` |
+| B20 | 秋瑾 | 國本 | 普通 | 1 | `B20.png` |
+| C01 | 諸葛亮 | 運命軸 | 傳說 | 4 | `C01.png` |
+| C02 | 孫武 | 運命軸 | 史詩 | 3 | `C02.png` |
+| C03 | 劉邦 | 運命軸 | 優秀 | 2 | `C03.png` |
+| C04 | 司馬懿 | 運命軸 | 史詩 | 3 | `C04.png` |
+| C05 | 張良 | 運命軸 | 史詩 | 3 | `C05.png` |
+| C06 | 曹操 | 運命軸 | 史詩 | 3 | `C06.png` |
+| C07 | 唐太宗 | 運命軸 | 傳說 | 4 | `C07.png` |
+| C08 | 康熙 | 運命軸 | 史詩 | 3 | `C08.png` |
+| C09 | 孫中山 | 運命軸 | 優秀 | 2 | `C09.png` |
+| C10 | 林則徐 | 運命軸 | 優秀 | 2 | `C10.png` |
+| C11 | 管仲 | 運命軸 | 優秀 | 2 | `C11.png` |
+| C12 | 商鞅 | 運命軸 | 優秀 | 2 | `C12.png` |
+| C13 | 蕭何 | 運命軸 | 優秀 | 2 | `C13.png` |
+| C14 | 魏徵 | 運命軸 | 普通 | 1 | `C14.png` |
+| C15 | 王安石 | 運命軸 | 優秀 | 2 | `C15.png` |
+| C16 | 朱熹 | 運命軸 | 普通 | 1 | `C16.png` |
+| C17 | 王陽明 | 運命軸 | 優秀 | 2 | `C17.png` |
+| C18 | 曾國藩 | 運命軸 | 優秀 | 2 | `C18.png` |
+| C19 | 武則天 | 運命軸 | 史詩 | 3 | `C19.png` |
+| C20 | 孫臏 | 運命軸 | 優秀 | 2 | `C20.png` |
+
+**合計：60 prompts**｜未部署｜未呼叫任何圖像生成 API

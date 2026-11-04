@@ -1,0 +1,8 @@
+README.md
+cards_60.json
+*.zip
+.git/**
+.gitignore
+.claspignore
+art_drive_map.json
+art_drive_map_jpg.json

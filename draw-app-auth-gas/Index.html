@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>中史無雙 · Google 登入核對</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; background: #0f172a; color: #e2e8f0; }
+    .card { max-width: 420px; margin: 0 auto; padding: 20px; border-radius: 12px; background: #1e293b; }
+    h1 { font-size: 1.15rem; margin: 0 0 8px; }
+    .hint { color: #94a3b8; font-size: 0.9rem; line-height: 1.45; }
+    .warn { color: #fcd34d; font-size: 0.9rem; margin-top: 10px; line-height: 1.45; }
+    .err { color: #fca5a5; margin-top: 12px; line-height: 1.45; }
+    .ok { color: #86efac; margin-top: 12px; }
+    code { word-break: break-all; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Google 登入核對</h1>
+    <p class="hint">正核對 Chrome／Google 帳同你輸入嘅學校 email…</p>
+    <p class="warn">若本頁空白或卡住：請用<strong>學校 Google 帳</strong>單獨開啟此核對連結，完成「允許／授權」後再返抽卡 App 登入。</p>
+    <p>輸入：<code id="typed"><?!= typedEmail ?></code></p>
+    <p id="status" class="hint">核對中…（首次可能要授權，請稍候）</p>
+    <p id="detail" class="hint"></p>
+    <p class="hint" style="margin-top:16px;font-size:0.8rem;">版本：<?!= version ?></p>
+  </div>
+  <script>
+    (function () {
+      var typedEmail = <?!= JSON.stringify(typedEmail) ?>;
+      var returnOrigin = <?!= JSON.stringify(returnOrigin) ?>;
+      var statusEl = document.getElementById("status");
+      var detailEl = document.getElementById("detail");
+
+      function getOpener() {
+        try {
+          if (window.top && window.top.opener && !window.top.opener.closed) {
+            return window.top.opener;
+          }
+        } catch (e) {}
+        try {
+          if (window.opener && !window.opener.closed) {
+            return window.opener;
+          }
+        } catch (e2) {}
+        return null;
+      }
+
+      function postOnce(payload) {
+        var msg = Object.assign({ type: "wushuang-auth-bridge" }, payload);
+        var opener = getOpener();
+        var targets = [];
+        if (returnOrigin) targets.push(returnOrigin);
+        targets.push("*");
+        if (opener) {
+          for (var i = 0; i < targets.length; i++) {
+            try {
+              opener.postMessage(msg, targets[i]);
+            } catch (e) {}
+          }
+        }
+        try {
+          if (window.parent && window.parent !== window) {
+            for (var j = 0; j < targets.length; j++) {
+              try {
+                window.parent.postMessage(msg, targets[j]);
+              } catch (e2) {}
+            }
+          }
+        } catch (e3) {}
+        try {
+          if (window.top && window.top !== window && window.top !== window.parent) {
+            for (var k = 0; k < targets.length; k++) {
+              try {
+                window.top.postMessage(msg, targets[k]);
+              } catch (e4) {}
+            }
+          }
+        } catch (e5) {}
+      }
+
+      /** Retry postMessage ~3 times over ~300–600ms so parent gets proof before close. */
+      function postToOpenerReliable(payload, thenClose) {
+        var delays = [0, 200, 450];
+        for (var i = 0; i < delays.length; i++) {
+          (function (d) {
+            setTimeout(function () {
+              postOnce(payload);
+            }, d);
+          })(delays[i]);
+        }
+        if (thenClose) {
+          setTimeout(function () {
+            tryClose();
+          }, 1000);
+        }
+      }
+
+      function tryClose() {
+        try {
+          if (typeof google !== "undefined" && google.script && google.script.host && google.script.host.close) {
+            google.script.host.close();
+            return;
+          }
+        } catch (e) {}
+        try {
+          window.close();
+        } catch (e2) {}
+        try {
+          if (window.top && window.top !== window) window.top.close();
+        } catch (e3) {}
+      }
+
+      function finish(result) {
+        var payload = result || { ok: false, error: "核對失敗", match: false };
+        if (payload.ok && payload.match) {
+          statusEl.className = "ok";
+          statusEl.textContent = "核對成功，視窗即將關閉…";
+          detailEl.textContent = "Google：" + (payload.googleEmail || "");
+        } else {
+          statusEl.className = "err";
+          statusEl.textContent = (payload && payload.error) || "核對失敗";
+          var parts = [];
+          if (payload && payload.googleEmail) {
+            parts.push(
+              "Google：" + payload.googleEmail + " ≠ 輸入：" + (payload.typedEmail || typedEmail)
+            );
+          }
+          parts.push("若頁面曾空白：請用學校帳單獨開本連結完成授權後再試。");
+          detailEl.textContent = parts.join(" ");
+        }
+        postToOpenerReliable(payload, true);
+      }
+
+      if (!typedEmail) {
+        finish({ ok: false, error: "缺少輸入 email。", match: false, typedEmail: "" });
+        return;
+      }
+
+      if (typeof google === "undefined" || !google.script || !google.script.run) {
+        finish({
+          ok: false,
+          error: "未能載入 Google Apps Script。請用學校帳單獨開此頁完成授權。",
+          match: false,
+          typedEmail: typedEmail,
+        });
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler(finish)
+        .withFailureHandler(function (err) {
+          finish({
+            ok: false,
+            error:
+              "核對失敗：" +
+              String(err && err.message ? err.message : err) +
+              "。請用學校帳單獨開此頁完成授權後再試。",
+            match: false,
+            typedEmail: typedEmail,
+          });
+        })
+        .verifyAndLog(typedEmail);
+    })();
+  </script>
+</body>
+</html>

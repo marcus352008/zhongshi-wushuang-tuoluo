@@ -1,0 +1,23 @@
+# dependencies and build output
+node_modules/
+dist/
+
+# Cloudflare Wrangler local state and dev secrets
+.wrangler/
+.dev.vars
+
+# environment files
+.env*
+
+# logs
+*.log
+
+# OS junk
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+*~

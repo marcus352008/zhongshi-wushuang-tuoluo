@@ -1,0 +1,628 @@
+/**
+ * 案Q 題庫：初中／高中中史短題，優先綁卡池人物史實。
+ * 每題 4 選 1，答案索引 0–3。tags 用於按 loadout 人名加權抽題。
+ * 0.5.2-pvp-grade-quiz：支援開局題（launch 共用）與分級儲力題（fight_f1 / fight_f2 / fight_f3）。
+ */
+export interface QuizQuestion {
+  id: string;
+  /** 題幹（繁中完整句）。 */
+  q: string;
+  /** 四個選項（繁中）。 */
+  options: [string, string, string, string];
+  /** 正確選項索引 0–3。 */
+  answer: 0 | 1 | 2 | 3;
+  /** 綁定的人物／關鍵詞，用於加權抽題。 */
+  tags: string[];
+}
+
+export const QUIZ_BANK: readonly QuizQuestion[] = [
+  {
+    id: 'q01',
+    q: '項羽在巨鹿之戰中，用哪一個成語形容他斷絕後路、激勵士氣的做法？',
+    options: ['破釜沉舟', '背水一戰', '圍魏救趙', '紙上談兵'],
+    answer: 0,
+    tags: ['項羽', '巨鹿之戰'],
+  },
+  {
+    id: 'q02',
+    q: '霍去病多次出擊匈奴，後世用哪一個詞形容他立下的邊功？',
+    options: ['封狼居胥', '勒石燕然', '飲馬長江', '直搗黃龍'],
+    answer: 0,
+    tags: ['霍去病', '匈奴'],
+  },
+  {
+    id: 'q03',
+    q: '岳飛抗金，後人常用哪四個字概括他的忠義精神？',
+    options: ['精忠報國', '鞠躬盡瘁', '捨生取義', '忠肝義膽'],
+    answer: 0,
+    tags: ['岳飛', '抗金'],
+  },
+  {
+    id: 'q04',
+    q: '三國名將關羽，後世尊稱他為什麼？',
+    options: ['武聖', '兵仙', '飛將軍', '戰神'],
+    answer: 0,
+    tags: ['關羽', '三國'],
+  },
+  {
+    id: 'q05',
+    q: '張飛在當陽橋上喝退曹軍，這個故事主要表現他的什麼特點？',
+    options: ['勇猛過人', '足智多謀', '仁德愛民', '善於外交'],
+    answer: 0,
+    tags: ['張飛', '當陽橋'],
+  },
+  {
+    id: 'q06',
+    q: '秦國名將白起，在哪一場大戰中大破趙軍？',
+    options: ['長平之戰', '巨鹿之戰', '赤壁之戰', '淝水之戰'],
+    answer: 0,
+    tags: ['白起', '長平之戰'],
+  },
+  {
+    id: 'q07',
+    q: '助劉邦建立漢朝、用兵如神而被稱為「兵仙」的是誰？',
+    options: ['韓信', '張良', '蕭何', '樊噲'],
+    answer: 0,
+    tags: ['韓信', '漢朝'],
+  },
+  {
+    id: 'q08',
+    q: '鄭成功最為人稱頌的功業是什麼？',
+    options: ['收復臺灣，驅逐荷蘭殖民者', '平定安史之亂', '北伐中原，聞雞起舞', '收復新疆'],
+    answer: 0,
+    tags: ['鄭成功', '臺灣'],
+  },
+  {
+    id: 'q09',
+    q: '成吉思汗的主要功業是什麼？',
+    options: ['統一蒙古各部，建立大帝國', '統一六國', '開創貞觀之治', '領導辛亥革命'],
+    answer: 0,
+    tags: ['成吉思汗', '蒙古'],
+  },
+  {
+    id: 'q10',
+    q: '周瑜在赤壁之戰中，主要採用哪一種戰術大破曹操？',
+    options: ['火攻', '水淹', '圍城', '誘敵深入'],
+    answer: 0,
+    tags: ['周瑜', '赤壁之戰'],
+  },
+  {
+    id: 'q11',
+    q: '西漢名將李廣抗擊匈奴，史書稱他為什麼？',
+    options: ['飛將軍', '兵仙', '武聖', '戰神'],
+    answer: 0,
+    tags: ['李廣', '匈奴'],
+  },
+  {
+    id: 'q12',
+    q: '班超原本是文書小吏，後來投筆從戎，他主要經營哪一個地區？',
+    options: ['西域', '嶺南', '遼東', '江南'],
+    answer: 0,
+    tags: ['班超', '西域'],
+  },
+  {
+    id: 'q13',
+    q: '唐初名將薛仁貴，曾參與哪一場對外征戰？',
+    options: ['征遼東', '赤壁之戰', '長平之戰', '土木堡之變'],
+    answer: 0,
+    tags: ['薛仁貴', '唐朝'],
+  },
+  {
+    id: 'q14',
+    q: '北宋楊業抗遼，後人把他的家族故事稱為什麼？',
+    options: ['楊家將', '岳家軍', '戚家軍', '湘軍'],
+    answer: 0,
+    tags: ['楊業', '楊家將'],
+  },
+  {
+    id: 'q15',
+    q: '南宋名將韓世忠曾在哪一處阻擊金軍？',
+    options: ['黃天蕩', '當陽橋', '細柳營', '虎門'],
+    answer: 0,
+    tags: ['韓世忠', '抗金'],
+  },
+  {
+    id: 'q16',
+    q: '明末農民軍領袖李自成，最終攻入了哪一座城市？',
+    options: ['北京', '南京', '長安', '洛陽'],
+    answer: 0,
+    tags: ['李自成', '明朝'],
+  },
+  {
+    id: 'q17',
+    q: '甲午海戰中，致遠艦管帶鄧世昌最後的結局是什麼？',
+    options: ['壯烈殉國', '投降日軍', '退守臺灣', '被貶回鄉'],
+    answer: 0,
+    tags: ['鄧世昌', '甲午'],
+  },
+  {
+    id: 'q18',
+    q: '晚清名臣左宗棠最重要的邊疆功業是什麼？',
+    options: ['收復新疆', '收復臺灣', '平定三藩', '開闢絲路'],
+    answer: 0,
+    tags: ['左宗棠', '新疆'],
+  },
+  {
+    id: 'q19',
+    q: '祖逖北伐中原，留下哪一個勤奮自勵的典故？',
+    options: ['聞雞起舞', '破釜沉舟', '臥薪嘗膽', '紙上談兵'],
+    answer: 0,
+    tags: ['祖逖', '北伐'],
+  },
+  {
+    id: 'q20',
+    q: '明末名將袁崇煥，曾在哪一場戰役中擊退後金軍？',
+    options: ['寧遠大捷', '鎮南關大捷', '長平之戰', '巨鹿之戰'],
+    answer: 0,
+    tags: ['袁崇煥', '後金'],
+  },
+  {
+    id: 'q21',
+    q: '戰國趙國名將廉頗，與藺相如之間流傳哪一個故事？',
+    options: ['負荊請罪', '完璧歸趙', '紙上談兵', '圍魏救趙'],
+    answer: 0,
+    tags: ['廉頗', '藺相如'],
+  },
+  {
+    id: 'q22',
+    q: '西漢名將衛青多次出擊匈奴，史稱他取得什麼戰績？',
+    options: ['七戰七捷', '三顧茅廬', '六出祁山', '一戰定江山'],
+    answer: 0,
+    tags: ['衛青', '匈奴'],
+  },
+  {
+    id: 'q23',
+    q: '明朝抗倭名將戚繼光，訓練出哪一支著名軍隊？',
+    options: ['戚家軍', '岳家軍', '楊家將', '湘軍'],
+    answer: 0,
+    tags: ['戚繼光', '抗倭'],
+  },
+  {
+    id: 'q24',
+    q: '土木堡之變後，堅守北京、保衛京師的是哪一位大臣？',
+    options: ['于謙', '史可法', '文天祥', '林則徐'],
+    answer: 0,
+    tags: ['于謙', '土木堡之變'],
+  },
+  {
+    id: 'q25',
+    q: '秦始皇最重要的歷史功業是什麼？',
+    options: ['統一六國，建立中國首個大一統王朝', '開創貞觀之治', '收復臺灣', '領導辛亥革命'],
+    answer: 0,
+    tags: ['秦始皇', '統一六國'],
+  },
+  {
+    id: 'q26',
+    q: '三國時期以仁德號召、建立蜀漢的是誰？',
+    options: ['劉備', '曹操', '孫權', '司馬懿'],
+    answer: 0,
+    tags: ['劉備', '蜀漢'],
+  },
+  {
+    id: 'q27',
+    q: '助朱元璋開國、北伐滅元殘部的明初名將是誰？',
+    options: ['徐達', '戚繼光', '袁崇煥', '于謙'],
+    answer: 0,
+    tags: ['徐達', '明朝'],
+  },
+  {
+    id: 'q28',
+    q: '唐初名將李靖，曾平定哪一個北方政權？',
+    options: ['東突厥', '匈奴', '後金', '西夏'],
+    answer: 0,
+    tags: ['李靖', '唐朝'],
+  },
+  {
+    id: 'q29',
+    q: '明末史可法堅守哪一座城市抗清，最後城破殉國？',
+    options: ['揚州', '北京', '南京', '廣州'],
+    answer: 0,
+    tags: ['史可法', '揚州'],
+  },
+  {
+    id: 'q30',
+    q: '秦朝名將蒙恬，主要負責哪一項邊防工程？',
+    options: ['督修長城與馳道', '開鑿大運河', '修築鄭國渠', '建造阿房宮'],
+    answer: 0,
+    tags: ['蒙恬', '長城'],
+  },
+  {
+    id: 'q31',
+    q: '秦國名將王翦，最著名的戰功是什麼？',
+    options: ['助秦滅楚', '大破趙軍於長平', '平定七國之亂', '收復臺灣'],
+    answer: 0,
+    tags: ['王翦', '秦國'],
+  },
+  {
+    id: 'q32',
+    q: '西漢名將周亞夫以治軍嚴整著稱，他曾在哪一處紮營？',
+    options: ['細柳營', '黃天蕩', '當陽橋', '虎門'],
+    answer: 0,
+    tags: ['周亞夫', '細柳營'],
+  },
+  {
+    id: 'q33',
+    q: '平定安史之亂的唐朝功臣，以哪一位最為著名？',
+    options: ['郭子儀', '李靖', '魏徵', '狄青'],
+    answer: 0,
+    tags: ['郭子儀', '安史之亂'],
+  },
+  {
+    id: 'q34',
+    q: '北宋名將狄青，曾征討哪一位南方叛亂首領？',
+    options: ['儂智高', '安祿山', '史思明', '李自成'],
+    answer: 0,
+    tags: ['狄青', '北宋'],
+  },
+  {
+    id: 'q35',
+    q: '南宋抗元名臣文天祥，留下哪一篇傳世名作？',
+    options: ['《正氣歌》', '《孫子兵法》', '《出師表》', '《岳陽樓記》'],
+    answer: 0,
+    tags: ['文天祥', '抗元'],
+  },
+  {
+    id: 'q36',
+    q: '晚清名將馮子材，曾在哪一場戰役中大敗法軍？',
+    options: ['鎮南關大捷', '寧遠大捷', '黃天蕩之戰', '赤壁之戰'],
+    answer: 0,
+    tags: ['馮子材', '抗法'],
+  },
+  {
+    id: 'q37',
+    q: '戰國趙國守邊名將李牧，主要防禦哪一個北方民族？',
+    options: ['匈奴', '後金', '倭寇', '突厥'],
+    answer: 0,
+    tags: ['李牧', '趙國'],
+  },
+  {
+    id: 'q38',
+    q: '西漢張騫出使西域，開闢了哪一條著名商路？',
+    options: ['絲綢之路', '茶馬古道', '大運河', '海上絲路'],
+    answer: 0,
+    tags: ['張騫', '西域'],
+  },
+  {
+    id: 'q39',
+    q: '北朝民歌《木蘭辭》所傳，代父從軍的女子是誰？',
+    options: ['花木蘭', '武則天', '秋瑾', '王昭君'],
+    answer: 0,
+    tags: ['花木蘭', '木蘭辭'],
+  },
+  {
+    id: 'q40',
+    q: '清末革命志士秋瑾，被後人稱為什麼？',
+    options: ['鑑湖女俠', '飛將軍', '兵仙', '武聖'],
+    answer: 0,
+    tags: ['秋瑾', '革命'],
+  },
+  {
+    id: 'q41',
+    q: '蜀漢丞相諸葛亮，以哪一句話概括他為國盡力的精神？',
+    options: ['鞠躬盡瘁，死而後已', '破釜沉舟', '聞雞起舞', '精忠報國'],
+    answer: 0,
+    tags: ['諸葛亮', '蜀漢'],
+  },
+  {
+    id: 'q42',
+    q: '《孫子兵法》的作者是誰？',
+    options: ['孫武', '孫臏', '韓信', '張良'],
+    answer: 0,
+    tags: ['孫武', '孫子兵法'],
+  },
+  {
+    id: 'q43',
+    q: '漢朝開國皇帝劉邦，以什麼方式最終得天下？',
+    options: ['以柔克剛，善用人才', '以武力硬拼', '靠外族援助', '靠科舉取士'],
+    answer: 0,
+    tags: ['劉邦', '漢朝'],
+  },
+  {
+    id: 'q44',
+    q: '三國時期司馬懿以什麼策略著稱？',
+    options: ['韜光養晦，等待時機', '破釜沉舟', '聞雞起舞', '精忠報國'],
+    answer: 0,
+    tags: ['司馬懿', '三國'],
+  },
+  {
+    id: 'q45',
+    q: '助劉邦運籌帷幄、功成身退的西漢謀臣是誰？',
+    options: ['張良', '蕭何', '韓信', '陳平'],
+    answer: 0,
+    tags: ['張良', '劉邦'],
+  },
+  {
+    id: 'q46',
+    q: '東漢末年統一北方、為三分天下奠基的人物是誰？',
+    options: ['曹操', '劉備', '孫權', '諸葛亮'],
+    answer: 0,
+    tags: ['曹操', '三國'],
+  },
+  {
+    id: 'q47',
+    q: '唐太宗即位後開創的治世，史稱為什麼？',
+    options: ['貞觀之治', '開元盛世', '文景之治', '康乾盛世'],
+    answer: 0,
+    tags: ['唐太宗', '貞觀之治'],
+  },
+  {
+    id: 'q48',
+    q: '清朝康熙帝在位期間，主要功業之一是鞏固哪一方面的統治？',
+    options: ['清朝在全國的統治', '推翻清朝', '建立中華民國', '開闢絲綢之路'],
+    answer: 0,
+    tags: ['康熙', '清朝'],
+  },
+  {
+    id: 'q49',
+    q: '孫中山領導辛亥革命，開創了哪一個政體？',
+    options: ['中華民國', '中華人民共和國', '清朝', '明朝'],
+    answer: 0,
+    tags: ['孫中山', '辛亥革命'],
+  },
+  {
+    id: 'q50',
+    q: '林則徐在虎門銷煙，主要是為了抵抗哪一個國家的鴉片輸入？',
+    options: ['英國', '日本', '法國', '俄國'],
+    answer: 0,
+    tags: ['林則徐', '虎門銷煙'],
+  },
+  {
+    id: 'q51',
+    q: '輔助齊桓公成為霸主、與鮑叔牙有「管鮑之交」的是誰？',
+    options: ['管仲', '商鞅', '蕭何', '魏徵'],
+    answer: 0,
+    tags: ['管仲', '齊桓公'],
+  },
+  {
+    id: 'q52',
+    q: '戰國時期商鞅變法強秦，曾用哪一個方法取信於民？',
+    options: ['立木取信', '破釜沉舟', '負荊請罪', '聞雞起舞'],
+    answer: 0,
+    tags: ['商鞅', '變法'],
+  },
+  {
+    id: 'q53',
+    q: '助劉邦鎮國家、撫百姓的西漢名臣是誰？',
+    options: ['蕭何', '張良', '韓信', '陳平'],
+    answer: 0,
+    tags: ['蕭何', '劉邦'],
+  },
+  {
+    id: 'q54',
+    q: '唐太宗時期以敢於進諫著名的名臣是誰？',
+    options: ['魏徵', '房玄齡', '杜如晦', '李靖'],
+    answer: 0,
+    tags: ['魏徵', '唐太宗'],
+  },
+  {
+    id: 'q55',
+    q: '北宋王安石推行的改革，史稱為什麼？',
+    options: ['熙寧變法', '商鞅變法', '戊戌變法', '洋務運動'],
+    answer: 0,
+    tags: ['王安石', '變法'],
+  },
+  {
+    id: 'q56',
+    q: '南宋理學集大成、影響科舉教育深遠的思想家是誰？',
+    options: ['朱熹', '王陽明', '孔子', '孟子'],
+    answer: 0,
+    tags: ['朱熹', '理學'],
+  },
+  {
+    id: 'q57',
+    q: '明代心學代表、主張「知行合一」的思想家是誰？',
+    options: ['王陽明', '朱熹', '曾國藩', '王安石'],
+    answer: 0,
+    tags: ['王陽明', '心學'],
+  },
+  {
+    id: 'q58',
+    q: '晚清湘軍領袖、被視為名臣的是誰？',
+    options: ['曾國藩', '李鴻章', '左宗棠', '林則徐'],
+    answer: 0,
+    tags: ['曾國藩', '湘軍'],
+  },
+  {
+    id: 'q59',
+    q: '中國歷史上唯一的女皇帝是誰？',
+    options: ['武則天', '慈禧太后', '花木蘭', '秋瑾'],
+    answer: 0,
+    tags: ['武則天', '女皇帝'],
+  },
+  {
+    id: 'q60',
+    q: '戰國軍事家孫臏，曾在哪兩場戰役中擊敗龐涓？',
+    options: ['桂陵之戰與馬陵之戰', '長平之戰與巨鹿之戰', '赤壁之戰與官渡之戰', '淝水之戰與土木堡之變'],
+    answer: 0,
+    tags: ['孫臏', '馬陵之戰'],
+  },
+];
+
+/**
+ * Runtime bank kind:
+ * - 'launch': 開局案Q（全校共用「開局題」）
+ * - 'fight_f1' | 'fight_f2' | 'fight_f3': 初中分級對戰儲力題（嚴格同級，不越級）
+ * - 'fight': 通用對戰儲力題（僅供未指定年級時的 CPU 練習 fallback）
+ */
+export type QuizBankKind = 'launch' | 'fight' | 'fight_f1' | 'fight_f2' | 'fight_f3';
+
+export type QuizGradeForm = 'F1' | 'F2' | 'F3';
+
+/** 由年級（F1/F2/F3）取得對應的專屬儲力題庫鍵值。 */
+export function fightBankKindForForm(form?: QuizGradeForm | string | null): QuizBankKind {
+  const clean = String(form ?? '').trim().toUpperCase();
+  if (clean === 'F1') return 'fight_f1';
+  if (clean === 'F2') return 'fight_f2';
+  if (clean === 'F3') return 'fight_f3';
+  return 'fight';
+}
+
+const FALLBACK_BANK: readonly QuizQuestion[] = QUIZ_BANK;
+
+function cloneQuestions(src: readonly QuizQuestion[]): QuizQuestion[] {
+  return src.map((q) => ({
+    ...q,
+    options: [...q.options] as [string, string, string, string],
+    tags: [...q.tags],
+  }));
+}
+
+const runtimeBanks: Record<QuizBankKind, QuizQuestion[]> = {
+  launch: cloneQuestions(FALLBACK_BANK),
+  fight: cloneQuestions(FALLBACK_BANK),
+  fight_f1: cloneQuestions(FALLBACK_BANK),
+  fight_f2: cloneQuestions(FALLBACK_BANK),
+  fight_f3: cloneQuestions(FALLBACK_BANK),
+};
+
+function bankOf(kind: QuizBankKind = 'launch'): readonly QuizQuestion[] {
+  return runtimeBanks[kind] ?? runtimeBanks.launch;
+}
+
+/** Replace runtime bank if valid enough; otherwise keep previous / fallback. */
+export function setQuizBank(kind: QuizBankKind, questions: readonly QuizQuestion[]): boolean {
+  const min = kind === 'launch' ? 5 : 1;
+  if (!Array.isArray(questions) || questions.length < min) {
+    console.warn(`[quizBank] ${kind}: only ${questions?.length ?? 0} valid (<${min}); keep fallback`);
+    return false;
+  }
+  runtimeBanks[kind] = cloneQuestions(questions);
+  console.info(`[quizBank] ${kind}: loaded ${runtimeBanks[kind].length} questions`);
+  return true;
+}
+
+export function getQuizBank(kind: QuizBankKind = 'launch'): readonly QuizQuestion[] {
+  return bankOf(kind);
+}
+
+export function resetQuizBanksToFallback(): void {
+  runtimeBanks.launch = cloneQuestions(FALLBACK_BANK);
+  runtimeBanks.fight = cloneQuestions(FALLBACK_BANK);
+  runtimeBanks.fight_f1 = cloneQuestions(FALLBACK_BANK);
+  runtimeBanks.fight_f2 = cloneQuestions(FALLBACK_BANK);
+  runtimeBanks.fight_f3 = cloneQuestions(FALLBACK_BANK);
+}
+
+/** Parse sheet/JSON rows into QuizQuestion[]; skips bad rows with console.warn. */
+export function parseQuizQuestions(raw: unknown): QuizQuestion[] {
+  if (!Array.isArray(raw)) {
+    console.warn('[quizBank] parse: not an array');
+    return [];
+  }
+  const out: QuizQuestion[] = [];
+  raw.forEach((item, index) => {
+    if (item == null || typeof item !== 'object') {
+      console.warn(`[quizBank] skip #${index}: not object`);
+      return;
+    }
+    const r = item as Record<string, unknown>;
+    const id = String(r.id ?? '').trim();
+    const q = String(r.q ?? '').trim();
+    let options: [string, string, string, string] | null = null;
+    if (Array.isArray(r.options) && r.options.length === 4) {
+      options = [
+        String(r.options[0] ?? '').trim(),
+        String(r.options[1] ?? '').trim(),
+        String(r.options[2] ?? '').trim(),
+        String(r.options[3] ?? '').trim(),
+      ];
+    } else {
+      const o0 = String(r.opt0 ?? '').trim();
+      const o1 = String(r.opt1 ?? '').trim();
+      const o2 = String(r.opt2 ?? '').trim();
+      const o3 = String(r.opt3 ?? '').trim();
+      if (o0 || o1 || o2 || o3) options = [o0, o1, o2, o3];
+    }
+    const answerNum = Number(r.answer);
+    let tags: string[] = [];
+    if (Array.isArray(r.tags)) tags = r.tags.map((t) => String(t).trim()).filter(Boolean);
+    else if (typeof r.tags === 'string')
+      tags = r.tags.split(/[,，]/).map((t) => t.trim()).filter(Boolean);
+
+    if (!id || !q) {
+      if (id || q || options) console.warn(`[quizBank] skip #${index}: missing id/q`);
+      return;
+    }
+    if (!options || options.some((o) => !o)) {
+      console.warn(`[quizBank] skip ${id}: need 4 non-empty options`);
+      return;
+    }
+    if (![0, 1, 2, 3].includes(answerNum)) {
+      console.warn(`[quizBank] skip ${id}: answer must be 0–3 (got ${JSON.stringify(r.answer)})`);
+      return;
+    }
+    out.push({
+      id,
+      q,
+      options,
+      answer: answerNum as 0 | 1 | 2 | 3,
+      tags,
+    });
+  });
+  return out;
+}
+
+/** 洗牌（Fisher–Yates），回傳新陣列。 */
+function shuffle<T>(arr: readonly T[], rng: () => number): T[] {
+  const out = arr.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+/**
+ * 抽題：可傳入 loadout 人名（例如「項羽」「岳飛」）作加權。
+ * 命中 tags 的題目權重 ×3，其餘 ×1；抽 n 題不重複。
+ * 當傳入 'fight_f1' | 'fight_f2' | 'fight_f3' 時，只會從該年級專屬題庫抽取，絕不混抽其他年級。
+ */
+export function pickQuestions(
+  n: number,
+  rng: () => number = Math.random,
+  loadoutNames: readonly string[] = [],
+  bank: QuizBankKind = 'launch',
+): QuizQuestion[] {
+  const source = bankOf(bank);
+  const names = loadoutNames.filter(Boolean);
+  const weighted: { q: QuizQuestion; w: number }[] = source.map((q) => {
+    const hit = q.tags.some((t) => names.some((nm) => nm.includes(t) || t.includes(nm)));
+    return { q, w: hit ? 3 : 1 };
+  });
+
+  const picked: QuizQuestion[] = [];
+  const pool = weighted.slice();
+  while (picked.length < n && pool.length > 0) {
+    const total = pool.reduce((s, e) => s + e.w, 0);
+    let r = rng() * total;
+    let idx = 0;
+    for (let i = 0; i < pool.length; i++) {
+      r -= pool[i].w;
+      if (r <= 0) {
+        idx = i;
+        break;
+      }
+    }
+    picked.push(pool[idx].q);
+    pool.splice(idx, 1);
+  }
+  if (picked.length < n) {
+    for (const q of shuffle(source, rng)) {
+      if (picked.length >= n) break;
+      if (!picked.includes(q)) picked.push(q);
+    }
+  }
+  return picked;
+}
+
+/** 洗選項：回傳打亂後的選項與新的正確索引。 */
+export function shuffleOptions(q: QuizQuestion, rng: () => number = Math.random): {
+  options: string[];
+  answer: number;
+} {
+  const idx = [0, 1, 2, 3];
+  const order = shuffle(idx, rng);
+  const options = order.map((i) => q.options[i]);
+  const answer = order.indexOf(q.answer);
+  return { options, answer };
+}

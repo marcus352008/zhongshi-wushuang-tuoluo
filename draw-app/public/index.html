@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>中史無雙 · Flash card 獎勵系統</title>
+  <link rel="stylesheet" href="/styles.css?v=0.5.4" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>中史無雙</h1>
+      <p class="sub">Flash card 獎勵系統</p>
+      <p id="version" class="ver"></p>
+    </header>
+
+    <section id="login-panel" class="card">
+      <h2>進入</h2>
+      <p>輸入<strong>學校帳號 email</strong>，再以 Google 帳核對（須相符）。</p>
+      <form id="login-form" class="login-form">
+        <label for="school-email">學校 Email</label>
+        <input id="school-email" type="email" placeholder="student@wahyan.edu.hk" autocomplete="username" required />
+        <label for="school-name">姓名（核對，選填）</label>
+        <input id="school-name" type="text" placeholder="與學生名單「姓名」一致" autocomplete="name" />
+        <button type="submit" id="btn-enter" class="primary huge">進入</button>
+      </form>
+      <p id="login-hint" class="hint"></p>
+      <p id="login-error" class="error hidden"></p>
+    </section>
+
+    <section id="main-panel" class="hidden">
+      <div class="card status">
+        <div class="who">你好，<strong id="user-email"></strong> <span id="user-name" class="hint"></span></div>
+        <div class="stats">
+          <div><span class="label">已入帳</span><span id="credited-min" class="num">—</span><span class="unit">分鐘</span></div>
+          <div><span class="label">可抽總數</span><span id="entitled" class="num">—</span></div>
+          <div><span class="label">已抽</span><span id="used" class="num">—</span></div>
+          <div><span class="label">剩餘</span><span id="remaining" class="num big">—</span></div>
+        </div>
+        <p id="study-source" class="hint"></p>
+        <button type="button" id="btn-draw" class="primary huge">抽 1 張</button>
+        <div class="row toolbar">
+          <button type="button" id="btn-refresh" class="ghost">重新整理</button>
+          <button type="button" id="btn-mute" class="ghost" aria-pressed="true" title="揭曉音效">音效：關</button>
+          <button type="button" id="btn-logout" class="ghost">登出</button>
+        </div>
+      </div>
+
+      <div id="draw-result" class="card result hidden" aria-live="polite"></div>
+
+      <div class="card">
+        <h2>我的圖鑑</h2>
+        <p id="collection-empty" class="hint">尚未有卡。溫習 → 抽卡。</p>
+        <div id="collection" class="grid"></div>
+      </div>
+
+      <div class="card">
+        <h2>抽卡記錄</h2>
+        <ul id="draw-log" class="log"></ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>規則：每日最多入帳 60 分鐘；每 10 分鐘＝1 抽；可跨日累積。遊戲勝負 ≠ 歷史結論。</p>
+    </footer>
+  </div>
+
+  <!-- Fullscreen card detail / draw reveal -->
+  <div id="card-modal" class="card-modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-card-name">
+    <div class="card-modal-backdrop" id="modal-backdrop"></div>
+    <div class="card-modal-panel">
+      <div id="modal-body" class="card-modal-body"></div>
+      <button type="button" id="btn-modal-back" class="primary huge btn-modal-back">返回</button>
+    </div>
+  </div>
+
+  <script src="/app.js?v=0.5.4"></script>
+</body>
+</html>
