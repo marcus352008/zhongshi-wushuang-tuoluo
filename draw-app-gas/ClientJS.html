@@ -1,0 +1,501 @@
+<script>
+/* 中史無雙陀螺 draw-app-gas — google.script.run
+ * VERSION: draw-app-gas 0.4.0
+ */
+(function () {
+  var VERSION_FALLBACK = 'draw-app-gas 0.4.0';
+  var EMAIL_KEY = 'wushuang_draw_email';
+  var NAME_KEY = 'wushuang_draw_name';
+  var MUTE_KEY = 'wushuang_draw_sfx_mute';
+  var FLIP_MS = 750;
+  // Portraits via google.script.run apiArt → data URL
+  // (Drive lh3/uc hotlinks often fail inside GAS HtmlService iframe)
+  var artCache = {};
+  var ART_BASE = '';
+
+  function $(id) { return document.getElementById(id); }
+  var email = localStorage.getItem(EMAIL_KEY) || '';
+  var displayName = localStorage.getItem(NAME_KEY) || '';
+  var sfxMuted = localStorage.getItem(MUTE_KEY) !== '0';
+  var flipSkipHandler = null;
+  var flipTimer = null;
+  var modalLocked = false;
+  var onModalClose = null;
+
+  function run(fnName) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return new Promise(function (resolve, reject) {
+      var runner = google.script.run
+        .withSuccessHandler(resolve)
+        .withFailureHandler(function (err) {
+          reject(err instanceof Error ? err : new Error(String(err)));
+        });
+      runner[fnName].apply(runner, args);
+    });
+  }
+
+  function showMain(on) {
+    $('login-panel').classList.toggle('hidden', on);
+    $('main-panel').classList.toggle('hidden', !on);
+  }
+
+  function setLoginError(msg) {
+    var el = $('login-error');
+    if (!msg) {
+      el.classList.add('hidden');
+      el.textContent = '';
+      return;
+    }
+    el.classList.remove('hidden');
+    el.textContent = msg;
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function rarityClass(r) {
+    var ok = ['普通', '優秀', '史詩', '傳說'];
+    return ok.indexOf(r) >= 0 ? r : '優秀';
+  }
+
+  function updateMuteButton() {
+    var btn = $('btn-mute');
+    if (!btn) return;
+    btn.textContent = sfxMuted ? '音效：關' : '音效：開';
+    btn.setAttribute('aria-pressed', sfxMuted ? 'true' : 'false');
+  }
+
+  function playRevealSfx() {
+    if (sfxMuted) return;
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      var ctx = new Ctx();
+      var o = ctx.createOscillator();
+      var g = ctx.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(520, ctx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
+      g.gain.setValueAtTime(0.0001, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.28);
+      o.connect(g);
+      g.connect(ctx.destination);
+      o.start();
+      o.stop(ctx.currentTime + 0.3);
+      setTimeout(function () { ctx.close().catch(function () {}); }, 400);
+    } catch (e) {}
+  }
+
+  function artUrl(cardId) {
+    if (artCache[cardId]) return artCache[cardId];
+    if (!ART_BASE) return '';
+    return ART_BASE + encodeURIComponent(cardId) + '.png';
+  }
+
+  function fillArtImage(img, cardId, onOk, onFail) {
+    if (!img || !cardId) {
+      if (onFail) onFail();
+      return;
+    }
+    function apply(url) {
+      if (!url) {
+        if (onFail) onFail();
+        return;
+      }
+      var done = false;
+      var show = function () {
+        if (done) return;
+        done = true;
+        img.classList.add('loaded');
+        img.style.display = 'block';
+        if (onOk) onOk();
+      };
+      var fail = function () {
+        if (done) return;
+        done = true;
+        if (onFail) onFail();
+      };
+      img.addEventListener('load', show, { once: true });
+      img.addEventListener('error', fail, { once: true });
+      img.src = url;
+      if (img.complete && img.naturalWidth > 0) show();
+    }
+    if (artCache[cardId]) {
+      apply(artCache[cardId]);
+      return;
+    }
+    run('apiArt', cardId)
+      .then(function (res) {
+        if (res && res.ok && res.dataUrl) {
+          artCache[cardId] = res.dataUrl;
+          apply(res.dataUrl);
+        } else if (onFail) onFail();
+      })
+      .catch(function () {
+        if (onFail) onFail();
+      });
+  }
+
+  function portraitHtml(c) {
+    var r = rarityClass(c.rarity || '');
+    var slot = c.slot || '';
+    var id = c.id || '';
+    return (
+      '<div class="portrait slot-' + escapeHtml(slot) + ' rarity-frame-' + escapeHtml(r) + '" data-card-id="' + escapeHtml(id) + '">' +
+      '<div class="portrait-ph">' +
+      '<span class="slot-tag">' + escapeHtml(slot || '—') + '</span>' +
+      '<span>人物圖載入中…</span>' +
+      '</div>' +
+      (id ? '<img alt="" data-art-id="' + escapeHtml(id) + '" />' : '') +
+      '</div>'
+    );
+  }
+
+  function bindPortraitImages(root) {
+    if (!root) return;
+    root.querySelectorAll('.portrait img[data-art-id]').forEach(function (img) {
+      var wrap = img.closest('.portrait');
+      var id = img.getAttribute('data-art-id');
+      var phLabel = wrap ? wrap.querySelector('.portrait-ph span:last-child') : null;
+      fillArtImage(
+        img,
+        id,
+        function () {
+          if (wrap) wrap.classList.add('has-art');
+        },
+        function () {
+          if (wrap) wrap.classList.remove('has-art');
+          if (phLabel) phLabel.textContent = '人物圖待上';
+          img.removeAttribute('src');
+        }
+      );
+    });
+  }
+
+  function statsHtml(c) {
+    var cells = [
+      ['攻', c.atk], ['防', c.def], ['續', c.sta_decay],
+      ['速', c.spd], ['穩', c.mas], ['爆', c.br]
+    ];
+    return (
+      '<div class="stats-row">' +
+      cells.map(function (pair) {
+        return '<span>' + pair[0] + '<strong>' +
+          escapeHtml(pair[1] != null && pair[1] !== '' ? String(pair[1]) : '—') +
+          '</strong></span>';
+      }).join('') +
+      '</div>'
+    );
+  }
+
+  function detailHtml(c, opts) {
+    opts = opts || {};
+    var r = rarityClass(c.rarity || '');
+    return (
+      '<div class="detail-card rarity-frame-' + escapeHtml(r) + '">' +
+      (opts.headline ? '<h2>' + escapeHtml(opts.headline) + '</h2>' : '') +
+      portraitHtml(c) +
+      '<span class="rarity-badge ' + escapeHtml(r) + '">' + escapeHtml(r || '—') + '</span>' +
+      '<p class="name" id="modal-card-name">' + escapeHtml(c.name || '') + '</p>' +
+      '<p class="meta">' + escapeHtml(c.era_role || '') + '</p>' +
+      '<p class="meta">' + escapeHtml(c.slot || '') + ' · Cost ' + escapeHtml(String(c.cost != null ? c.cost : '')) + '</p>' +
+      '<p>' + escapeHtml(c.main_label || '') + '</p>' +
+      (c.sub_mod ? '<p class="hint">' + escapeHtml(c.sub_mod) + '</p>' : '') +
+      statsHtml(c) +
+      '<p class="lore">' + escapeHtml(c.lore_28 || '') + '</p>' +
+      (opts.isDuplicate
+        ? '<p class="dup">呢張你已有（重複；碎片規則未定）</p>'
+        : opts.headline === '抽到！'
+          ? '<p class="new-tag">新卡入圖鑑！</p>'
+          : '') +
+      (opts.count != null
+        ? '<div class="count-badge">擁有 ×' + escapeHtml(String(opts.count)) + '</div>'
+        : '') +
+      (opts.remaining != null
+        ? '<p class="hint">剩餘抽數：' + opts.remaining + '</p>'
+        : '') +
+      '</div>'
+    );
+  }
+
+  function openModal() {
+    $('card-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (modalLocked) return;
+    $('card-modal').classList.add('hidden');
+    $('modal-body').innerHTML = '';
+    document.body.style.overflow = '';
+    var cb = onModalClose;
+    onModalClose = null;
+    if (cb) cb();
+  }
+
+  function clearFlipListeners() {
+    if (flipTimer) {
+      clearTimeout(flipTimer);
+      flipTimer = null;
+    }
+    if (flipSkipHandler) {
+      var box = $('modal-body');
+      if (box) box.removeEventListener('click', flipSkipHandler);
+      flipSkipHandler = null;
+    }
+  }
+
+  function showDetailInModal(c, opts) {
+    modalLocked = false;
+    $('modal-body').innerHTML = detailHtml(c, opts);
+    bindPortraitImages($('modal-body'));
+    openModal();
+    $('btn-modal-back').focus();
+  }
+
+  function playFlipReveal(data) {
+    return new Promise(function (resolve) {
+      clearFlipListeners();
+      modalLocked = true;
+      onModalClose = function () { resolve(); };
+      openModal();
+      var c = data.card;
+      var opts = {
+        headline: '抽到！',
+        isDuplicate: data.isDuplicate,
+        remaining: data.remainingDraws
+      };
+      var reduceMotion =
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var settled = false;
+      function finish() {
+        if (settled) return;
+        settled = true;
+        clearFlipListeners();
+        playRevealSfx();
+        showDetailInModal(c, opts);
+      }
+
+      if (reduceMotion) {
+        finish();
+        return;
+      }
+
+      $('modal-body').innerHTML =
+        '<div class="flip-stage" role="button" tabindex="0" aria-label="點擊跳過翻卡">' +
+        '<div class="flip-card" id="flip-card-el">' +
+        '<div class="flip-face flip-back">' +
+        '<div class="seal">無雙</div>' +
+        '<div class="hint-tap">點擊或按「跳過」即揭</div>' +
+        '</div>' +
+        '<div class="flip-face flip-front">' +
+        detailHtml(c, opts) +
+        '</div></div>' +
+        '<button type="button" class="skip" id="btn-skip-flip">跳過／即揭</button>' +
+        '</div>';
+      bindPortraitImages($('modal-body'));
+
+      var cardEl = $('flip-card-el');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          if (!settled && cardEl) cardEl.classList.add('flipped');
+        });
+      });
+
+      flipSkipHandler = function (ev) {
+        if (ev.target && ev.target.id === 'btn-modal-back') return;
+        ev.preventDefault();
+        finish();
+      };
+      $('modal-body').addEventListener('click', flipSkipHandler);
+      var skipBtn = $('btn-skip-flip');
+      if (skipBtn) {
+        skipBtn.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          finish();
+        });
+      }
+      flipTimer = setTimeout(finish, FLIP_MS);
+    });
+  }
+
+  function renderCollection(data) {
+    var box = $('collection');
+    var empty = $('collection-empty');
+    box.innerHTML = '';
+    if (!data.items || data.items.length === 0) {
+      empty.classList.remove('hidden');
+      empty.textContent = data.message || '尚未有卡。';
+      return;
+    }
+    empty.classList.add('hidden');
+    data.items.forEach(function (it) {
+      var c = it.card || {};
+      var r = rarityClass(c.rarity || '');
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'card-tile';
+      btn.setAttribute('aria-label', '查看 ' + (c.name || it.cardId));
+      var cid = c.id || it.cardId || '';
+      btn.innerHTML =
+        '<div class="tile-thumb"><div class="ph">載入中…</div>' +
+        (cid ? '<img alt="" data-art-id="' + escapeHtml(cid) + '" style="display:none" />' : '') +
+        '</div>' +
+        '<div class="name">' + escapeHtml(c.name || it.cardId) + '</div>' +
+        (c.rarity
+          ? '<span class="rarity-badge ' + escapeHtml(r) + '">' + escapeHtml(r) + '</span>'
+          : '') +
+        '<div class="slot">' + escapeHtml(c.slot || '') + ' · Cost ' + escapeHtml(String(c.cost != null ? c.cost : '')) + '</div>' +
+        '<div>' + escapeHtml(c.main_label || '') + '</div>' +
+        '<div class="hint">×' + it.count + '</div>';
+      var thumbImg = btn.querySelector('.tile-thumb img');
+      var ph = btn.querySelector('.tile-thumb .ph');
+      if (thumbImg) {
+        fillArtImage(
+          thumbImg,
+          cid,
+          function () {
+            if (ph) ph.style.display = 'none';
+          },
+          function () {
+            if (ph) {
+              ph.style.display = '';
+              ph.textContent = '人物圖待上';
+            }
+            thumbImg.remove();
+          }
+        );
+      }
+      btn.addEventListener('click', function () {
+        onModalClose = null;
+        showDetailInModal(c, { count: it.count, isDuplicate: it.count > 1 });
+      });
+      box.appendChild(btn);
+    });
+  }
+
+  function renderLog(data) {
+    var ul = $('draw-log');
+    ul.innerHTML = '';
+    if (!data.items || data.items.length === 0) {
+      ul.innerHTML = "<li class='hint'>未有記錄</li>";
+      return;
+    }
+    data.items.forEach(function (e) {
+      var li = document.createElement('li');
+      li.textContent =
+        e.drawnAt + ' · ' + e.cardName + '（' + e.cardId + '）' +
+        (e.isDuplicate ? ' 〔重複〕' : '');
+      ul.appendChild(li);
+    });
+  }
+
+  function refresh() {
+    return run('apiMe', email, displayName || null).then(function (me) {
+      if (!me.ok) throw new Error(me.error || '進入失敗');
+      $('version').textContent = me.version || VERSION_FALLBACK;
+      $('user-email').textContent = me.email;
+      $('user-name').textContent = displayName ? '（' + displayName + '）' : '';
+      $('credited-min').textContent = String(me.creditedMinutes);
+      $('entitled').textContent = String(me.entitledDraws);
+      $('used').textContent = String(me.drawLogCount);
+      $('remaining').textContent = String(me.remainingDraws);
+      $('study-source').textContent =
+        '資料來源：' +
+        (me.studySource === 'sheets' ? 'Flash Card Sheet' : 'Mock 時數') +
+        ' · 登入：' + me.authMode;
+      $('btn-draw').disabled = me.remainingDraws < 1;
+      return Promise.all([
+        run('apiCollection', email),
+        run('apiLog', email, 15)
+      ]);
+    }).then(function (pair) {
+      renderCollection(pair[0]);
+      renderLog(pair[1]);
+    });
+  }
+
+  function doEnter(em, name) {
+    email = String(em || '').trim().toLowerCase();
+    displayName = String(name || '').trim();
+    if (!email) {
+      setLoginError('請輸入學校 email。');
+      return Promise.reject(new Error('no email'));
+    }
+    localStorage.setItem(EMAIL_KEY, email);
+    if (displayName) localStorage.setItem(NAME_KEY, displayName);
+    else localStorage.removeItem(NAME_KEY);
+    setLoginError('');
+    showMain(true);
+    return refresh();
+  }
+
+  $('login-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    doEnter($('school-email').value, $('school-name').value).catch(function (e) {
+      showMain(false);
+      setLoginError(e.message || String(e));
+    });
+  });
+
+  $('btn-logout').addEventListener('click', function () {
+    email = '';
+    displayName = '';
+    localStorage.removeItem(EMAIL_KEY);
+    localStorage.removeItem(NAME_KEY);
+    showMain(false);
+    setLoginError('');
+  });
+
+  $('btn-refresh').addEventListener('click', function () {
+    refresh().catch(function (e) { alert(e.message); });
+  });
+
+  $('btn-mute').addEventListener('click', function () {
+    sfxMuted = !sfxMuted;
+    localStorage.setItem(MUTE_KEY, sfxMuted ? '1' : '0');
+    updateMuteButton();
+  });
+  updateMuteButton();
+
+  $('btn-modal-back').addEventListener('click', function () { closeModal(); });
+
+  $('btn-draw').addEventListener('click', function () {
+    $('btn-draw').disabled = true;
+    run('apiDraw', email, displayName || null)
+      .then(function (data) {
+        if (!data.ok) throw new Error(data.error || '抽卡失敗');
+        $('draw-result').classList.add('hidden');
+        return playFlipReveal(data);
+      })
+      .then(function () { return refresh(); })
+      .catch(function (e) {
+        alert(e.message || String(e));
+        $('btn-draw').disabled = false;
+        refresh().catch(function () {});
+      });
+  });
+
+  run('apiHealth').then(function (h) {
+    $('version').textContent = h.version || VERSION_FALLBACK;
+    if (h.mockStudy) {
+      $('login-hint').textContent =
+        '會對「學生名單」核對 email（名單非空時）；無學習記錄暫用 mock 時數。正式接 Sheet 後可關 ALLOW_MOCK_STUDY。';
+    }
+  }).catch(function () {});
+
+  if (email) {
+    $('school-email').value = email;
+    $('school-name').value = displayName;
+    doEnter(email, displayName).catch(function () { showMain(false); });
+  }
+})();
+</script>

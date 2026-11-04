@@ -1,0 +1,31 @@
+name = "wushuang-tuoluo-draw"
+main = "src/index.ts"
+compatibility_date = "2024-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+# VERSION: draw-app 0.5.5-owned-null-guard
+# Registry：初中｜重大 deploy 前知會經理
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[vars]
+ALLOW_MOCK_AUTH = "0"
+MOCK_STUDY_SEC = ""
+VERSION = "draw-app 0.5.5-owned-null-guard"
+# Flash Card 同一簿：溫習＋抽卡分頁
+STUDY_SHEET_ID = "1vZpNVqC_JyyFIFHjzV5SdoV9--lj8wx5mZMhg6CPotc"
+DRAW_SHEET_ID = "1vZpNVqC_JyyFIFHjzV5SdoV9--lj8wx5mZMhg6CPotc"
+# GAS 登入核對橋（Execute as User）；Marcus Deploy 後填 /exec URL
+AUTH_BRIDGE_URL = "https://script.google.com/a/macros/wahyan.edu.hk/s/AKfycbxqCw6Blyzux8_v0ilobLRf7eYhkFQnPW6AysAnZEqhZnUwiQc3IHI74G97SeyR8e6d/exec"
+# AUTH_BRIDGE_SECRET → wrangler secret（同 GAS Script Property AUTH_HMAC_SECRET）
+# AUTH_SHEET_ID = 1ZIB-whclOkMFWCNf9007v3fXs0T0PwHsVO1pRwge9LU（由 GAS 寫入）
+# 分頁名：學習記錄／抽卡記錄／擁有卡
+# GOOGLE_SA_JSON → wrangler secret（未設則 preview：跳過名單＋mock 時數）
+# 學生登入＝輸入學校 email + GAS ActiveUser 核對（唔使 OAuth Client ID）
+
+# Optional KV for DrawLog when Sheets SA missing
+# [[kv_namespaces]]
+# binding = "DRAW_KV"
+# id = "replace-me"

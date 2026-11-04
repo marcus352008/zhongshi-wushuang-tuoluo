@@ -1,0 +1,20 @@
+{
+  "name": "wushuang-tuoluo-draw-app",
+  "version": "0.1.0-mock",
+  "private": true,
+  "description": "中史無雙 — Flash card 獎勵系統 Web App（初中）",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "wrangler deploy --dry-run --outdir=dist",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx scripts/test-study.ts",
+    "test:study": "node --import tsx scripts/test-study.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241011.0",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "wrangler": "^3.80.0"
+  }
+}

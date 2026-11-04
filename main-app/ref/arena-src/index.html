@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Beyblade Arena: Mini Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <div id="hud" class="hidden">
+      <div class="fighter" id="p-card">
+        <div class="fighter-name"><span class="tag you">YOU</span><span id="p-name"></span></div>
+        <div class="bar"><div class="fill" id="p-fill"></div></div>
+        <div class="fighter-meta"><span id="p-kind"></span><span id="p-spin"></span></div>
+      </div>
+      <div class="score">
+        <div class="score-nums"><span id="p-score">0</span><span class="dash">:</span><span id="a-score">0</span></div>
+        <div class="round" id="round-label">Round 1</div>
+      </div>
+      <div class="fighter right" id="a-card">
+        <div class="fighter-name"><span id="a-name"></span><span class="tag cpu">CPU</span></div>
+        <div class="bar"><div class="fill" id="a-fill"></div></div>
+        <div class="fighter-meta"><span id="a-spin"></span><span id="a-kind"></span></div>
+      </div>
+    </div>
+
+    <div id="banner" class="banner"><div id="banner-title"></div><div id="banner-sub"></div></div>
+
+    <div id="launch" class="launch hidden">
+      <div class="launch-hint" id="launch-hint">Hold <kbd>Space</kbd> to charge, release to launch</div>
+      <div class="meter"><div class="meter-perfect"></div><div class="meter-fill" id="meter-fill"></div></div>
+    </div>
+
+    <div id="dash-ind" class="dash-ind hidden"><span>DASH</span><div class="dash-bar"><div id="dash-fill"></div></div></div>
+
+    <div id="touch" class="touch hidden">
+      <div id="joystick" class="joystick"><div id="knob" class="knob"></div></div>
+      <button id="action-btn" class="action-btn">LAUNCH</button>
+    </div>
+
+    <button id="mute-btn" class="mute-btn" title="Toggle sound (M)">SOUND ON</button>
+
+    <div id="select" class="overlay">
+      <div class="panel">
+        <div class="eyebrow">Mini test build</div>
+        <h1>BEYBLADE <span>ARENA</span></h1>
+        <p class="lede">Pick a beyblade, time your launch, and knock your rival out of the stadium. First to 3 points wins.</p>
+        <div class="cards" id="cards"></div>
+        <button id="start-btn" class="primary">LET IT RIP!</button>
+        <div class="controls">
+          <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / arrows to steer</div>
+          <div><kbd>Space</kbd> hold to charge launch, tap in battle to dash</div>
+          <div><kbd>Shift</kbd> dash &middot; <kbd>M</kbd> mute</div>
+        </div>
+        <div class="rules">Spin finish <b>1 pt</b> &middot; Ring out <b>2 pts</b> &middot; Burst <b>2 pts</b></div>
+      </div>
+    </div>
+
+    <div id="result" class="overlay hidden">
+      <div class="panel small">
+        <div class="eyebrow" id="result-eyebrow">Match over</div>
+        <h1 id="result-title">VICTORY</h1>
+        <p class="lede" id="result-sub"></p>
+        <div class="row">
+          <button id="rematch-btn" class="primary">REMATCH</button>
+          <button id="change-btn" class="secondary">CHANGE BEYBLADE</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="error" class="overlay hidden">
+      <div class="panel small">
+        <h1>WebGL unavailable</h1>
+        <p class="lede">Your browser could not start 3D graphics. Try a recent Chrome, Edge, Firefox, or Safari with hardware acceleration enabled.</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

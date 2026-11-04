@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中史無雙陀螺 0.5.13-card-load｜天下武道大會</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="stage"></div>
+      <div id="screens"></div>
+      <div id="bottom-bar" class="bottom-bar hidden">
+        <div id="joystick" class="joystick" aria-label="方向搖桿"><div id="knob" class="knob"></div></div>
+        <div class="bar-center">
+          <button id="aim-left" class="aim-btn" aria-label="向左瞄準">◄</button>
+          <div class="bar-mid">
+            <div id="bar-status" class="bar-status"></div>
+            <div id="charge-meter" class="charge-meter">
+              <div class="sweet-band" id="sweet-band"></div>
+              <div class="charge-fill" id="charge-fill"></div>
+            </div>
+          </div>
+          <button id="aim-right" class="aim-btn" aria-label="向右瞄準">►</button>
+        </div>
+        <div class="bar-right">
+          <button id="dash-btn" class="dash-btn" disabled>衝刺</button>
+          <button id="special-btn" class="special-btn hidden" disabled>特技</button>
+          <button id="charge-btn" class="charge-btn">蓄力</button>
+        </div>
+      </div>
+      <div id="top-right" class="top-right"></div>
+      <div id="version" class="version">v0.5.13-card-load</div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
